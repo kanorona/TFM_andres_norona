@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Torres Santa Catalina RV</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <!-- Estilos base -->
+  <link rel="stylesheet" href="vendor/reset.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="multiple-scenes">
+
+  <!-- LOGO DE LA INMOBILIARIA -->
+  <img id="logoInmobiliaria" src="img/logo.png">
+
+
+  <!-- VISOR PANORÁMICO -->
+  <div id="pano"></div>
+
+  <!-- POPUP DEL PLANO -->
+  <div id="popupPlano" class="popup hidden">
+
+  <span id="cerrarPopupPlano" class="cerrar">×</span>
+
+  <div id="planoSwitcher">
+    <button id="btnPlanoBIM" class="active">Plano BIM</button>
+    <button id="btnPlanoCAD">Plano CAD</button>
+  </div>
+
+  
+
+
+  <div class="planoContainer">
+    <img src="img/plano_bim.jpg" id="planoBIM" class="planoImagen visible">
+    <img src="img/plano_cad.jpg" id="planoCAD" class="planoImagen hidden">
+
+    <!-- Aquí van los botones -->
+    <div class="planoHotspot" data-target="0-entrada" data-name="Entrada" style="top: 85%; left: 90%;"></div>
+    <div class="planoHotspot" data-target="1-cocina-a" data-name="Cocina A" style="top: 72%; left: 72%;"></div>
+    <div class="planoHotspot" data-target="2-cocina-b" data-name="Cocina B" style="top: 75%; left: 58%;"></div>
+    <div class="planoHotspot" data-target="3-cocina-c" data-name="Cocina C" style="top: 75%; left: 50%;"></div>
+    <div class="planoHotspot" data-target="4-sala---comedor" data-name="Sala - Comedor" style="top: 18%; left: 68%;"></div>
+    <div class="planoHotspot" data-target="5-pasillo-a" data-name="Pasillo A" style="top: 55%; left: 45%;"></div>
+    <div class="planoHotspot" data-target="6-pasillo-b" data-name="Pasillo B" style="top: 55%; left: 30%;"></div>
+    <div class="planoHotspot" data-target="7-balcn" data-name="Balcón" style="top: 10%; left: 68%;"></div>
+    <div class="planoHotspot" data-target="8-bao-2a" data-name="Baño 2A" style="top: 62%; left: 41%;"></div>
+    <div class="planoHotspot" data-target="9-bao-2b" data-name="Baño 2B" style="top: 87%; left: 42%;"></div>
+    <div class="planoHotspot" data-target="10-dormitorio-2a" data-name="Dormitorio 2A" style="top: 48%; left: 36.5%;"></div>
+    <div class="planoHotspot" data-target="11-dormitorio-2b" data-name="Dormitorio 2B" style="top: 30%; left: 42%;"></div>
+    <div class="planoHotspot" data-target="12-dormitorio-3a" data-name="Dormitorio 3A" style="top: 48%; left: 30%;"></div>
+    <div class="planoHotspot" data-target="13-dormitorio-3b" data-name="Dormitorio 3B" style="top: 29%; left: 20%;"></div>
+    <div class="planoHotspot" data-target="14-bao-1a" data-name="Baño 1A" style="top: 58%; left: 23%;"></div>
+    <div class="planoHotspot" data-target="15-bao-1b" data-name="Baño 1B" style="top: 56%; left: 18%;"></div>
+    <div class="planoHotspot" data-target="16-bao-1c" data-name="Baño 1C" style="top: 56%; left: 12%;"></div>
+    <div class="planoHotspot" data-target="17-dormitorio-1a" data-name="Dormitorio 1A" style="top: 62%; left: 29.5%;"></div>
+    <div class="planoHotspot" data-target="18-dormitorio-1b" data-name="Dormitorio 1B" style="top: 80%; left: 30%;"></div>
+    <div class="planoHotspot" data-target="19-dormitorio-1c" data-name="Dormitorio 1C" style="top: 65%; left: 19%;"></div>
+    <div class="planoHotspot" data-target="20-dormitorio-1d" data-name="Dormitorio 1D" style="top: 75%; left: 13%;"></div>
+
+  </div>
+
+  </div>
+
+<!-- POPUP MODELO 3D -->
+  <div id="popupModelo3D" class="popup hidden">
+
+    <span id="cerrarModelo3D" class="cerrar">×</span>
+
+    <div class="modeloContainer">
+      <model-viewer id="viewer3D"
+          src="static/models/departamento_modelo.glb"
+          camera-controls
+          
+          field-of-view="50deg"
+          camera-orbit="0deg 90deg 1.9m"
+          camera-target="0 0.28 0"
+          shadow-intensity="1"
+          exposure="1.1"
+          style="width: 100%; height: 80vh;">
+        
+          <button slot="hotspot-entrada" class="hotspot3D" data-target="0-entrada" data-name="Entrada" data-position="58 19 0" data-normal="0 1 0" onclick="irEscena3D('0-entrada')"></button>
+          <button slot="hotspot-cocina-a" class="hotspot3D" data-target="1-cocina-a" data-name="Cocina A" data-position="48 25 0" data-normal="0 1 0" onclick="irEscena3D('1-cocina-a')"></button>
+          <button slot="hotspot-cocina-b" class="hotspot3D" data-target="2-cocina-b" data-name="Cocina B" data-position="42 22 0" data-normal="0 1 0" onclick="irEscena3D('2-cocina-b')"></button>
+          <button slot="hotspot-cocina-c" class="hotspot3D" data-target="3-cocina-c" data-name="Cocina C" data-position="35 22 0" data-normal="0 1 0" onclick="irEscena3D('3-cocina-c')"></button>
+          <button slot="hotspot-sala-comedor" class="hotspot3D" data-target="4-sala---comedor" data-name="Sala - Comedor" data-position="44 42 0" data-normal="0 1 0" onclick="irEscena3D('4-sala---comedor')"></button>
+          <button slot="hotspot-pasillo-a" class="hotspot3D" data-target="5-pasillo-a" data-name="Pasillo A" data-position="38 30 0" data-normal="0 1 0" onclick="irEscena3D('5-pasillo-a')"></button>
+          <button slot="hotspot-pasillo-b" class="hotspot3D" data-target="6-pasillo-b" data-name="Pasillo B" data-position="23 30 0" data-normal="0 1 0" onclick="irEscena3D('6-pasillo-b')"></button>
+          <button slot="hotspot-balcon" class="hotspot3D" data-target="7-balcn" data-name="Balcón" data-position="44 47 0" data-normal="0 1 0" onclick="irEscena3D('7-balcn')"></button>
+          <button slot="hotspot-bano-2a" class="hotspot3D" data-target="8-bao-2a" data-name="Baño 2A" data-position="30 26 0" data-normal="0 1 0" onclick="irEscena3D('8-bao-2a')"></button>
+          <button slot="hotspot-bano-2b" class="hotspot3D" data-target="9-bao-2b" data-name="Baño 2B" data-position="30 19 0" data-normal="0 1 0" onclick="irEscena3D('9-bao-2b')"></button>
+          <button slot="hotspot-dormitorio-2a" class="hotspot3D" data-target="10-dormitorio-2a" data-name="Dormitorio 2A" data-position="27 33 0" data-normal="0 1 0" onclick="irEscena3D('10-dormitorio-2a')"></button>
+          <button slot="hotspot-dormitorio-2b" class="hotspot3D" data-target="11-dormitorio-2b" data-name="Dormitorio 2B" data-position="30 38 0" data-normal="0 1 0" onclick="irEscena3D('11-dormitorio-2b')"></button>
+          <button slot="hotspot-dormitorio-3a" class="hotspot3D" data-target="12-dormitorio-3a" data-name="Dormitorio 3A" data-position="22 33 0" data-normal="0 1 0" onclick="irEscena3D('12-dormitorio-3a')"></button>
+          <button slot="hotspot-dormitorio-3b" class="hotspot3D" data-target="13-dormitorio-3b" data-name="Dormitorio 3B" data-position="15 39 0" data-normal="0 1 0" onclick="irEscena3D('13-dormitorio-3b')"></button>
+          <button slot="hotspot-bano-1a" class="hotspot3D" data-target="14-bao-1a" data-name="Baño 1A" data-position="20 28 0" data-normal="0 1 0" onclick="irEscena3D('14-bao-1a')"></button>
+          <button slot="hotspot-bano-1b" class="hotspot3D" data-target="15-bao-1b" data-name="Baño 1B" data-position="18 29 0" data-normal="0 1 0" onclick="irEscena3D('15-bao-1b')"></button>
+          <button slot="hotspot-bano-1c" class="hotspot3D" data-target="16-bao-1c" data-name="Baño 1C" data-position="13 30 0" data-normal="0 1 0" onclick="irEscena3D('16-bao-1c')"></button>
+          <button slot="hotspot-dormitorio-1a" class="hotspot3D" data-target="17-dormitorio-1a" data-name="Dormitorio 1A" data-position="23 27 0" data-normal="0 1 0" onclick="irEscena3D('17-dormitorio-1a')"></button>
+          <button slot="hotspot-dormitorio-1b" class="hotspot3D" data-target="18-dormitorio-1b" data-name="Dormitorio 1B" data-position="23 19 0" data-normal="0 1 0" onclick="irEscena3D('18-dormitorio-1b')"></button>
+          <button slot="hotspot-dormitorio-1c" class="hotspot3D" data-target="19-dormitorio-1c" data-name="Dormitorio 1C" data-position="17 26 0" data-normal="0 1 0" onclick="irEscena3D('19-dormitorio-1c')"></button>
+          <button slot="hotspot-dormitorio-1d" class="hotspot3D" data-target="20-dormitorio-1d" data-name="Dormitorio 1D" data-position="13 19 0" data-normal="0 1 0" onclick="irEscena3D('20-dormitorio-1d')"></button>
+            
+
+          
+      </model-viewer>
+    </div>
+
+  </div>
+
+  <!-- POPUP LUGARES CERCANOS -->
+  <div id="popupLugares" class="popup hidden">
+
+    <span id="cerrarPopupLugares" class="cerrar">×</span>
+
+    <div class="lugaresContainer">
+      <iframe src="widget-poi/index.html" 
+              id="iframeLugares"
+              frameborder="0"
+              style="width:100%; height:100%;"></iframe>
+    </div>
+
+  </div>
+
+
+  <!-- BOTÓN FLOTANTE -->
+  <div id="btnPlanoRender">
+    <img src="img/plano-de-la-casa.png" alt="Plano">
+  </div>
+
+  <!-- BOTÓN PARA MODELO BIM -->
+  <div id="btnModeloPopup">
+    <img src="img/cubo-3d.png" alt="Modelo 3D">
+  </div>
+
+  <!-- BOTÓN PARA LUGARES CERCANOS -->
+  <a href="javascript:void(0)" id="btnLugares">
+    <img src="img/ubicacion.png" class="icon">
+  </a>
+
+
+  <!-- PANEL INFERIOR TIPO KUULA -->
+  <div id="bottomBar">
+    <div id="thumbContainer"></div>
+  </div>
+
+  <!-- TÍTULO DE LA ESCENA -->
+  <div id="titleBar">
+    <h1 class="sceneName"></h1>
+  </div>
+
+  <!-- BOTÓN AUTOROTATE -->
+  <a href="javascript:void(0)" id="autorotateToggle">
+    <img class="icon off" src="img/pause.png">  <!-- se muestra al inicio -->
+    <img class="icon on" src="img/play.png">    <!-- aparece cuando pausas -->
+  </a>
+
+
+  <!-- BOTÓN FULLSCREEN -->
+  <a href="javascript:void(0)" id="fullscreenToggle">
+    <img class="icon off" src="img/fullscreen.png">
+    <img class="icon on" src="img/windowed.png">
+  </a>
+
+  <!-- CONTROLES DE MOVIMIENTO -->
+  <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+    <img class="icon" src="img/up.png">
+  </a>
+  <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+    <img class="icon" src="img/down.png">
+  </a>
+  <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+    <img class="icon" src="img/left.png">
+  </a>
+  <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+    <img class="icon" src="img/right.png">
+  </a>
+  <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+    <img class="icon" src="img/plus.png">
+  </a>
+  <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+    <img class="icon" src="img/minus.png">
+  </a>
+
+  <!-- OVERLAY PARA FADE IN / FADE OUT (DEBE IR ANTES DE LOS SCRIPTS) -->
+  <div id="fadeOverlay"></div>
+
+  <!-- 🔊 AUDIO + BOTÓN -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="musicButton">🔊</div>
+
+  <!-- LIBRERÍAS NECESARIAS -->
+  <script src="vendor/screenfull.min.js"></script>
+  <script src="vendor/bowser.min.js"></script>
+  <script src="vendor/marzipano.js"></script>
+
+  <!-- CONFIGURACIÓN GENERADA POR MARZIPANO -->
+  <script src="data.js"></script>
+
+  <!-- LÓGICA PRINCIPAL MODIFICADA -->
+  <script src="index.js"></script>
+
+  
+
+
+</body>
+</html>
