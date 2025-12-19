@@ -103,7 +103,7 @@ async function initCesium() {
     tileset1 = await Cesium.Cesium3DTileset.fromIonAssetId(4188642);
     viewer.scene.primitives.add(tileset1);
   } catch (e) {
-    console.log("Error capa 4188642", e);
+    console.log("Error capa 4257836", e);
   }
   if (tileset1) tileset1.style = new Cesium.Cesium3DTileStyle({ pointSize: 5.0 });
 
