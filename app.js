@@ -105,7 +105,7 @@ async function initCesium() {
   } catch (e) {
     console.log("Error capa 4188642", e);
   }
-  if (tileset1) tileset1.style = new Cesium.Cesium3DTileStyle({ pointSize: 10.0 });
+  if (tileset1) tileset1.style = new Cesium.Cesium3DTileStyle({ pointSize: 5.0 });
 
   try {
     tileset2 = await Cesium.Cesium3DTileset.fromIonAssetId(4257787);
