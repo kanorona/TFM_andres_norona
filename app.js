@@ -100,7 +100,7 @@ async function initCesium() {
   let tileset1, tileset2, tileset3;
 
   try {
-    tileset1 = await Cesium.Cesium3DTileset.fromIonAssetId(4188642);
+    tileset1 = await Cesium.Cesium3DTileset.fromIonAssetId(4318249);
     viewer.scene.primitives.add(tileset1);
   } catch (e) {
     console.log("Error capa 4257836", e);
@@ -108,7 +108,7 @@ async function initCesium() {
   if (tileset1) tileset1.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 });
 
   try {
-    tileset2 = await Cesium.Cesium3DTileset.fromIonAssetId(4257787);
+    tileset2 = await Cesium.Cesium3DTileset.fromIonAssetId(4319957);
     viewer.scene.primitives.add(tileset2);
   } catch (e) {
     console.log("Error capa 4185607", e);
