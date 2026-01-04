@@ -73,13 +73,13 @@ const hotspots = [
   { scene: "terraza-2", lon: -78.470515, lat: -0.132560, alt: 2948, enabled: true },
   { scene: "terraza-3", lon: -78.470640, lat: -0.132640, alt: 2943, enabled: true },
   { scene: "Turco", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "torre2_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "torre2_terraza1", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "torre1_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "torre1_terraza", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "sala_cine", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "sala_juegos", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "salon_eventos", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false }
+  { scene: "torre2_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre2_terraza2/app-files/tiles/0-terraza_6_torre_1/1/b/0/0.jpg", enabled: false },
+  { scene: "torre2_terraza1", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre2_terraza1/app-files/tiles/0-terraza_1_torre_1/1/r/0/0.jpg", enabled: false },
+  { scene: "torre1_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre1_terraza2/app-files/tiles/0-terraza_5_torre_1/1/r/0/0.jpg", enabled: false },
+  { scene: "torre1_terraza", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre1_terraza/app-files/tiles/0-terraza_1_torre_1/1/r/0/0.jpg", enabled: false },
+  { scene: "sala_cine", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/sala_cine/app-files/tiles/0-sala_cine/1/r/0/0.jpg", enabled: false },
+  { scene: "sala_juegos", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/sala_juegos/app-files/tiles/0-salon_juegos_1/1/r/0/0.jpg", enabled: false },
+  { scene: "salon_eventos", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/salon_eventos/app-files/tiles/0-salon_eventos_1/1/r/0/0.jpg", enabled: false }
 
 ];
 
