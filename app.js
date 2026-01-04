@@ -72,7 +72,15 @@ const hotspots = [
   { scene: "terraza-1", lon: -78.470655, lat: -0.132580, alt: 2948, enabled: true },
   { scene: "terraza-2", lon: -78.470515, lat: -0.132560, alt: 2948, enabled: true },
   { scene: "terraza-3", lon: -78.470640, lat: -0.132640, alt: 2943, enabled: true },
-  { scene: "Turco", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false }
+  { scene: "Turco", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "torre2_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "torre2_terraza1", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "torre1_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "torre1_terraza", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "sala_cine", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "sala_juegos", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
+  { scene: "salon_eventos", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false }
+
 ];
 
 
