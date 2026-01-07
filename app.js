@@ -15,6 +15,8 @@ function openTour(sceneName) {
   iframe.src = `marzipano/${sceneName}/app-files/index.html`;
 
   popup.classList.remove("hidden");
+  document.body.classList.add("tour-open"); // 👈 OCULTA panel capas
+
 }
 
 function closeTour() {
@@ -24,6 +26,8 @@ function closeTour() {
   popup.classList.add("hidden");
 
   iframe.src = "";
+  document.body.classList.remove("tour-open"); // 👈 MUESTRA panel capas
+
 }
 
 
@@ -73,10 +77,10 @@ const hotspots = [
   { scene: "terraza-2", lon: -78.470515, lat: -0.132560, alt: 2948, enabled: true },
   { scene: "terraza-3", lon: -78.470640, lat: -0.132640, alt: 2943, enabled: true },
   { scene: "Turco", lon: -78.470524, lat: -0.132830, alt: 2943, enabled: false },
-  { scene: "torre2_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre2_terraza2/app-files/tiles/0-terraza_6_torre_1/1/b/0/0.jpg", enabled: false },
-  { scene: "torre2_terraza1", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre2_terraza1/app-files/tiles/0-terraza_1_torre_1/1/r/0/0.jpg", enabled: false },
-  { scene: "torre1_terraza2", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre1_terraza2/app-files/tiles/0-terraza_5_torre_1/1/r/0/0.jpg", enabled: false },
-  { scene: "torre1_terraza", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/torre1_terraza/app-files/tiles/0-terraza_1_torre_1/1/r/0/0.jpg", enabled: false },
+  { scene: "torre2_terraza2", lon: -78.4703, lat: -0.13216, alt: 2965,thumb: "marzipano/torre2_terraza2/app-files/tiles/0-terraza_6_torre_1/1/b/0/0.jpg", enabled: true },
+  { scene: "torre2_terraza1", lon: -78.47025, lat: -0.13242, alt: 2965,thumb: "marzipano/torre2_terraza1/app-files/tiles/0-terraza_1_torre_1/1/r/0/0.jpg", enabled: true },
+  { scene: "torre1_terraza2", lon: -78.47022, lat: -0.13264, alt: 2965,thumb: "marzipano/torre1_terraza2/app-files/tiles/0-terraza_5_torre_1/1/r/0/0.jpg", enabled: true },
+  { scene: "torre1_terraza", lon: -78.47051, lat: -0.13271, alt: 2965,thumb: "marzipano/torre1_terraza/app-files/tiles/0-terraza_1_torre_1/1/r/0/0.jpg", enabled: true },
   { scene: "sala_cine", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/sala_cine/app-files/tiles/0-sala_cine/1/r/0/0.jpg", enabled: false },
   { scene: "sala_juegos", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/sala_juegos/app-files/tiles/0-salon_juegos_1/1/r/0/0.jpg", enabled: false },
   { scene: "salon_eventos", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/salon_eventos/app-files/tiles/0-salon_eventos_1/1/r/0/0.jpg", enabled: false }
@@ -102,42 +106,72 @@ async function initCesium() {
   viewer._cesiumWidget._creditContainer.style.display = "none";
 
 
-  // Agregar capas de ceisum
+// =======================================
+// AGREGAR CAPAS CESIUM
+// =======================================
+
+let tileset1, tileset2, tileset3;
+
+try {
+  tileset1 = await Cesium.Cesium3DTileset.fromIonAssetId(4318249);
+  viewer.scene.primitives.add(tileset1);
+  tileset1.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 });
+} catch (e) {
+  console.log("Error capa 4318249", e);
+}
+
+try {
+  tileset2 = await Cesium.Cesium3DTileset.fromIonAssetId(4319957);
+  viewer.scene.primitives.add(tileset2);
+  // tileset2.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 }); // opcional
+} catch (e) {
+  console.log("Error capa 4319957", e);
+}
+
+try {
+  tileset3 = await Cesium.Cesium3DTileset.fromIonAssetId(4329581);
+  viewer.scene.primitives.add(tileset3);
+  // tileset3.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 }); // opcional
+} catch (e) {
+  console.log("Error capa 4188226", e);
+}
 
 
-  let tileset1, tileset2, tileset3;
+// =======================================
+// ESTADO INICIAL (SOLO NUBE ACTIVA)
+// =======================================
+if (tileset1) tileset1.show = true;   // ✅ Nube de puntos ON
+if (tileset2) tileset2.show = false;  // ❌ BIM OFF
+if (tileset3) tileset3.show = false;  // ❌ Depto BIM OFF
 
-  try {
-    tileset1 = await Cesium.Cesium3DTileset.fromIonAssetId(4318249);
-    viewer.scene.primitives.add(tileset1);
-  } catch (e) {
-    console.log("Error capa 4257836", e);
-  }
-  if (tileset1) tileset1.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 });
 
-  try {
-    tileset2 = await Cesium.Cesium3DTileset.fromIonAssetId(4319957);
-    viewer.scene.primitives.add(tileset2);
-  } catch (e) {
-    console.log("Error capa 4185607", e);
-  }
-  try {
-    tileset3 = await Cesium.Cesium3DTileset.fromIonAssetId(4188226);
-    viewer.scene.primitives.add(tileset3);
-  } catch (e) {
-    console.log("Error capa 4188226", e);
-  }
-
-  // activar o descativar capas
-  document.getElementById("toggleLayer1").addEventListener("change", e => {
+// =======================================
+// ACTIVAR / DESACTIVAR CAPAS (UI)
+// =======================================
+const toggle1 = document.getElementById("toggleLayer1");
+if (toggle1) {
+  toggle1.checked = true;
+  toggle1.addEventListener("change", e => {
     if (tileset1) tileset1.show = e.target.checked;
   });
-  document.getElementById("toggleLayer2").addEventListener("change", e => {
+}
+
+const toggle2 = document.getElementById("toggleLayer2");
+if (toggle2) {
+  toggle2.checked = false;
+  toggle2.addEventListener("change", e => {
     if (tileset2) tileset2.show = e.target.checked;
   });
-  document.getElementById("toggleLayer3").addEventListener("change", e => {
+}
+
+const toggle3 = document.getElementById("toggleLayer3");
+if (toggle3) {
+  toggle3.checked = false;
+  toggle3.addEventListener("change", e => {
     if (tileset3) tileset3.show = e.target.checked;
   });
+}
+
 
   
 

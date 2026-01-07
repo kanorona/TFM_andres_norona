@@ -260,18 +260,18 @@ html, body {
 }
 /* ==== panel capas cesium ==== */
 #layerControl {
-  position: absolute;
-  top: 80px;
-  left: 15px;
+  position: fixed;              /* mejor que absolute */
+  top: 90px;                    /* debajo del logo */
+  left: 18px;
   background: rgba(0,0,0,0.65);
   padding: 12px 15px;
   border-radius: 10px;
   color: white;
   font-size: 14px;
-  z-index: 99999;
+  z-index: 150000;              /* alto, pero < popup */
   backdrop-filter: blur(4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
-
 #layerControl label {
   cursor: pointer;
   display: block;
@@ -281,4 +281,8 @@ html, body {
 #layerControl input[type="checkbox"] {
   margin-right: 6px;
   transform: scale(1.2);
+}
+/* Ocultar panel de capas cuando el tour está abierto */
+.tour-open #layerControl {
+  display: none !important;
 }
