@@ -1,24 +1,13 @@
-
-
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmNWRlMDY0MS0wMWJkLTRhODItOTAzYS1jYTNhZmE0YzVkNTgiLCJpZCI6MzU0MTYyLCJpYXQiOjE3NjE5Mjc3OTF9.QdIV5TPs0D8mCnE3TjDHiHQxwunslZjXiZ5FS5tm6L0";
-
-
-
-// agregar tiles
-
-
+// agregar los tiles
 function openTour(sceneName) {
   const popup = document.getElementById("tourPopup");
   const iframe = document.getElementById("tourIframe");
-
   iframe.src = `marzipano/${sceneName}/app-files/index.html`;
-
   popup.classList.remove("hidden");
-  document.body.classList.add("tour-open"); // 👈 OCULTA panel capas
-
+  document.body.classList.add("tour-open"); 
 }
-
 function closeTour() {
   const popup = document.getElementById("tourPopup");
   const iframe = document.getElementById("tourIframe");
@@ -26,11 +15,9 @@ function closeTour() {
   popup.classList.add("hidden");
 
   iframe.src = "";
-  document.body.classList.remove("tour-open"); // 👈 MUESTRA panel capas
+  document.body.classList.remove("tour-open"); 
 
 }
-
-
 function buildTileFolder(sceneName) {
   return "0-" + sceneName
     .toLowerCase()
@@ -38,10 +25,7 @@ function buildTileFolder(sceneName) {
     .replace(/ó/g, "o").replace(/ú/g, "u").replace(/ñ/g, "n")
     .replace(/[^a-z0-9\-]/g, "");
 }
-
-
 // Base Hotspots
-
 const hotspots = [
   {
     scene: "Areas-verdes",
@@ -86,12 +70,8 @@ const hotspots = [
   { scene: "salon_eventos", lon: -78.470524, lat: -0.132830, alt: 2943,thumb: "marzipano/salon_eventos/app-files/tiles/0-salon_eventos_1/1/r/0/0.jpg", enabled: false }
 
 ];
-
-
 //Inciar cesium
-
 async function initCesium() {
-
   const viewer = new Cesium.Viewer("cesiumContainer", {
     terrainProvider: await Cesium.CesiumTerrainProvider.fromIonAssetId(1),
     animation: false,
@@ -102,16 +82,10 @@ async function initCesium() {
     fullscreenButton: true,
     homeButton: true
   });
-
   viewer._cesiumWidget._creditContainer.style.display = "none";
 
-
-// =======================================
-// AGREGAR CAPAS CESIUM
-// =======================================
-
+// agregar capas de cesium
 let tileset1, tileset2, tileset3;
-
 try {
   tileset1 = await Cesium.Cesium3DTileset.fromIonAssetId(4318249);
   viewer.scene.primitives.add(tileset1);
@@ -119,35 +93,28 @@ try {
 } catch (e) {
   console.log("Error capa 4318249", e);
 }
-
 try {
   tileset2 = await Cesium.Cesium3DTileset.fromIonAssetId(4319957);
   viewer.scene.primitives.add(tileset2);
-  // tileset2.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 }); // opcional
+  
 } catch (e) {
   console.log("Error capa 4319957", e);
 }
-
 try {
   tileset3 = await Cesium.Cesium3DTileset.fromIonAssetId(4329581);
   viewer.scene.primitives.add(tileset3);
-  // tileset3.style = new Cesium.Cesium3DTileStyle({ pointSize: 3.0 }); // opcional
 } catch (e) {
   console.log("Error capa 4188226", e);
 }
 
+// al incicio solo dejamos el mesh activo
 
-// =======================================
-// ESTADO INICIAL (SOLO NUBE ACTIVA)
-// =======================================
-if (tileset1) tileset1.show = true;   // ✅ Nube de puntos ON
-if (tileset2) tileset2.show = false;  // ❌ BIM OFF
-if (tileset3) tileset3.show = false;  // ❌ Depto BIM OFF
+if (tileset1) tileset1.show = true;   
+if (tileset2) tileset2.show = false;  
+if (tileset3) tileset3.show = false;  
 
+// activar / desactivar capas
 
-// =======================================
-// ACTIVAR / DESACTIVAR CAPAS (UI)
-// =======================================
 const toggle1 = document.getElementById("toggleLayer1");
 if (toggle1) {
   toggle1.checked = true;
@@ -155,7 +122,6 @@ if (toggle1) {
     if (tileset1) tileset1.show = e.target.checked;
   });
 }
-
 const toggle2 = document.getElementById("toggleLayer2");
 if (toggle2) {
   toggle2.checked = false;
@@ -163,7 +129,6 @@ if (toggle2) {
     if (tileset2) tileset2.show = e.target.checked;
   });
 }
-
 const toggle3 = document.getElementById("toggleLayer3");
 if (toggle3) {
   toggle3.checked = false;
@@ -171,12 +136,7 @@ if (toggle3) {
     if (tileset3) tileset3.show = e.target.checked;
   });
 }
-
-
-  
-
-
-  // Animacion y enfoque
+   // Animacion y enfoque
   viewer.camera.flyTo({
     destination: Cesium.Cartesian3.fromDegrees(
       -78.471100,
@@ -189,11 +149,7 @@ if (toggle3) {
     },
     duration: 3
   });
-
-
   // Crear hotspots
-  
-
   const hotspotElements = [];
 
   hotspots.forEach(h => {
@@ -204,7 +160,7 @@ if (toggle3) {
     div.className = "hotspotImg";
 
     const icon = document.createElement("img");
-    icon.src = "img/360-grados_v2.png";
+    icon.src = "img/360-grados.png";
     div.appendChild(icon);
 
     const preview = document.createElement("div");
@@ -237,13 +193,10 @@ if (toggle3) {
 
   });
 
-
-  
-  // Posicion hotspot
+    // Posicion hotspot
 
   viewer.scene.postRender.addEventListener(() => {
     hotspotElements.forEach(h => {
-
       const win = Cesium.SceneTransforms.worldToWindowCoordinates(
         viewer.scene,
         h.position,
@@ -261,11 +214,8 @@ if (toggle3) {
     });
   });
 
-
-  
-  // Panel miniaturas
+    // Panel miniaturas
  
-
   const dockContent = document.getElementById("dockContent");
 
   hotspots.forEach(h => {
@@ -296,19 +246,15 @@ if (toggle3) {
     dockContent.appendChild(item);
   });
 
-
   
   // Boton panel plegable
-
   const dock = document.getElementById("sceneDock");
   const toggle = document.getElementById("dockToggle");
-
   toggle.onclick = () => {
     dock.classList.toggle("collapsed");
     toggle.textContent = dock.classList.contains("collapsed") ? "▼" : "▲";
   };
 
 }
-
 initCesium();
 document.getElementById("tourPopupClose").onclick = closeTour;

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nube de Puntos 3D / Cesium</title>
-
   <!-- cesium -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.134/Build/Cesium/Cesium.js"></script>
   <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.134/Build/Cesium/Widgets/widgets.css" />
-
   <!-- conexion style -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -19,8 +16,6 @@
   <div id="appLogo">
     <img src="img/logo.png" alt="Logo">
   </div>
-
-
   <!-- contenedor cesium -->
   <div id="cesiumContainer"></div>
   <!-- panel miniaturas-->
@@ -39,15 +34,9 @@
   <div id="layerControl">
     <label><input type="checkbox" id="toggleLayer1" checked> Modelo 3D</label>
     <label><input type="checkbox" id="toggleLayer2" checked> Modelo BIM</label>
-    <label><input type="checkbox" id="toggleLayer3" checked> Departamento Modelo BIM</label>
+    <!-- <label><input type="checkbox" id="toggleLayer3" checked> Departamento Modelo BIM</label>-->
   </div>
-
-  
-
   <!-- conexion con app -->
   <script src="app.js"></script>
-
-
 </body>
-
 </html>

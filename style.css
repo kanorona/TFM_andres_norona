@@ -1,4 +1,3 @@
-
 html, body {
   width: 100%;
   height: 100%;
@@ -8,8 +7,7 @@ html, body {
   background: #0a0a0a;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
-
-/* Contenedor Cesium */
+/* Entorno Cesium */
 #cesiumContainer {
   position: absolute;
   top: 0;
@@ -17,37 +15,26 @@ html, body {
   width: 100%;
   height: 100%;
 }
-
-
 .cesium-viewer-toolbar {
   top: 10px !important;
 }
-
-/* quitar creditos  */
+/* Elminar creditos cesium  */
 .cesium-credit-textContainer,
 .cesium-credit-logoContainer {
   display: none !important;
 }
-
-
-
-
-/* HOTSPOT */
-
+/* Diseño hotspots */
 .hotspotImg {
   position: absolute;
-  width: 30px;       /* tamaño del icono */
+  width: 30px;       
   height: 30px;
   cursor: pointer;
   z-index: 1000;
   transition: transform 0.2s ease;
-
   /* Centrado interno */
   display: none; 
   justify-content: center;
   align-items: center;
-
-  
   animation: pulseImg 2s infinite;
 }
 
@@ -56,8 +43,7 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-
-  /* Glow alrededor del icono */
+  /* animación Glow alrededor del icono */
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.9))
           drop-shadow(0 0 12px rgba(255,255,255,0.5));
 }
@@ -181,7 +167,7 @@ html, body {
   background: rgba(255,255,255,0.3);
 }
 
-/* === POPUP 360 === */
+/* pop recorrido 360*/
 .tour-popup {
   position: fixed;
   inset: 0;
@@ -258,17 +244,17 @@ html, body {
   width: 140px;     
   opacity: 0.90;
 }
-/* ==== panel capas cesium ==== */
+/* panel capas cesium  */
 #layerControl {
-  position: fixed;              /* mejor que absolute */
-  top: 90px;                    /* debajo del logo */
+  position: fixed;              
+  top: 90px;                  
   left: 18px;
   background: rgba(0,0,0,0.65);
   padding: 12px 15px;
   border-radius: 10px;
   color: white;
   font-size: 14px;
-  z-index: 150000;              /* alto, pero < popup */
+  z-index: 150000;              
   backdrop-filter: blur(4px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
@@ -282,7 +268,7 @@ html, body {
   margin-right: 6px;
   transform: scale(1.2);
 }
-/* Ocultar panel de capas cuando el tour está abierto */
+/* ocultar el panel de capas cuando este activo el recorrido */
 .tour-open #layerControl {
   display: none !important;
 }
